@@ -10,8 +10,13 @@ namespace TaskDemoAPI.Controllers
         [HttpGet]
         public List<string> GetAllTasks()
         {
-            return new List<string>() { "Go Shopping", "Do homework", "Morning meeting"};
+            return new List<string>() { "Go Shopping", "Do homework", "Morning meeting",
+            "create currency API"};
+
 
         }
+
+       
+
     }
 }
