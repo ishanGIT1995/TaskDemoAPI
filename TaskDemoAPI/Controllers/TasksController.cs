@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TaskDemoAPI.Models;
 
 namespace TaskDemoAPI.Controllers
 {
@@ -7,16 +8,33 @@ namespace TaskDemoAPI.Controllers
     [ApiController]
     public class TasksController : ControllerBase
     {
-        [HttpGet]
-        public List<string> GetAllTasks()
+        [HttpGet] 
+        public IEnumerable<MyTask> GetAllTasks()
         {
-            return new List<string>() { "Go Shopping", "Do homework", "Morning meeting",
-            "create currency API"};
+            return new List<MyTask>()
+                {
+                new MyTask()
+                {
+                    Id = 1,
+                    Title = "Go Shopping",
+                    Description = "Go Shopping and buy some snacks",
+
+
+                },
+                new MyTask()
+                {
+                    Id = 2,
+                    Title = "Watch a movie",
+                    Description = "this saturday go and watch movie SpiderMan"
+
+                },
+
+                
+                };
 
 
         }
 
        
-
     }
 }
