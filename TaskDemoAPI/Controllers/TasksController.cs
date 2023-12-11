@@ -9,32 +9,34 @@ namespace TaskDemoAPI.Controllers
     public class TasksController : ControllerBase
     {
         [HttpGet] 
-        public IEnumerable<MyTask> GetAllTasks()
+        public ActionResult<IEnumerable<MyTask>> GetAllTasks()
         {
-            return new List<MyTask>()
-                {
-                new MyTask()
-                {
-                    Id = 1,
-                    Title = "Go Shopping",
-                    Description = "Go Shopping and buy some snacks",
 
 
-                },
-                new MyTask()
-                {
-                    Id = 2,
-                    Title = "Watch a movie",
-                    Description = "this saturday go and watch movie SpiderMan"
+            //MyTaskRepository obj =  new MyTaskRepository();
+            //return obj.MyTasks;
 
-                },
+            return Ok(MyTaskRepository.MyTasks);
 
-                
-                };
+            //return (IEnumerable<MyTask>)Ok();
 
 
         }
+        [HttpGet("{id}")]
 
-       
+        public ActionResult<MyTask> GetTask(int id) 
+        {
+            var task = MyTaskRepository.MyTasks.FirstOrDefault(x => x.Id == id);
+            if (task == null)
+            {
+               return  NotFound();
+            }
+
+            return Ok(task);
+        }
+
+         
+
+
     }
 }
